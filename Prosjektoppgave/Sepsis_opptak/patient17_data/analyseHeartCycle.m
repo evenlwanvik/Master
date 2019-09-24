@@ -44,11 +44,11 @@ figure();clf;
 N = length(t)
 f = (0:1/(N-1):1)*fs;
 V = fft(v);
-subplot(3,1,1);plot(f, abs(V));title('Heart cycle - velocity DFT')
-%xlim([0 10]) % only show positive half of spectrum
+subplot(3,1,1);plot(f, mag2db(abs(V)));title('Heart cycle - velocity DFT')
+xlim([0 10]) % only show positive half of spectrum
 P = fft(p);
-subplot(3,1,2);plot(f, abs(P));title('Heart cycle - pressure DFT')
-%xlim([0 10])
+subplot(3,1,2);plot(f, mag2db(abs(P)));title('Heart cycle - pressure DFT')
+xlim([0 10])
 
 size(P)
 size(V.')
@@ -57,8 +57,8 @@ size(V.')
 Z = P./V;
 %Z = rdivide(P,V)
 R = Z(1) % zero freq component is the real value of Z
-subplot(3,1,3);plot(f, abs(Z));title('Heart cycle - impedance DFT')
-%xlim([0 10])
+subplot(3,1,3);plot(f, mag2db(abs(Z)));title('Heart cycle - impedance DFT')
+xlim([0 10])
 
 % find the first harmonic frequency of our signal
 [x, i_Fv] = max(abs(V(2:N-1))); Fv = f(i_Fv-1)
