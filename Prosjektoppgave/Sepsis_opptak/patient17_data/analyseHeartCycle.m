@@ -29,7 +29,7 @@ Ncycles=length(tED);
 
 % Plot velocity and pressure for heart cycle
 n=10;
-tIdx = find( Ts2.t>tED(n) & Ts2.t<tED(n+3)); % all samples within tED1 - tED2 window
+tIdx = find( Ts2.t>tED(n) & Ts2.t<tED(n+1)); % all samples within tED1 - tED2 window
 t=Ts2.t(tIdx); 
 v=Ts2.velocity(tIdx);
 p=Ts2.ART(tIdx);
@@ -45,25 +45,21 @@ N = length(t)
 f = (0:1/(N-1):1)*fs;
 V = fft(v);
 subplot(3,1,1);plot(f, mag2db(abs(V)));title('Heart cycle - velocity DFT')
-xlim([0 10]) % only show positive half of spectrum
+%xlim([0 20]); ylim([0, 100]); % only show positive half of spectrum
 P = fft(p);
 subplot(3,1,2);plot(f, mag2db(abs(P)));title('Heart cycle - pressure DFT')
-xlim([0 10])
-
-size(P)
-size(V.')
-
+%xlim([0 20]); ylim([0, 100]);
 % Impedans for paralellkobling av R og C i Windkessel modell
 Z = P./V;
 %Z = rdivide(P,V)
 R = Z(1) % zero freq component is the real value of Z
 subplot(3,1,3);plot(f, mag2db(abs(Z)));title('Heart cycle - impedance DFT')
-xlim([0 10])
+%xlim([0 20]); ylim([0, 100]);
 
 % find the first harmonic frequency of our signal
-[x, i_Fv] = max(abs(V(2:N-1))); Fv = f(i_Fv-1)
-[x, i_Fp] = max(abs(P(2:N-1))); Fp = f(i_Fp-1)
-[x, i_Fz] = max(abs(Z(2:N-1))); Fz = f(i_Fz-1)
+[x, i_Fv] = max(abs(V(2:N-1))); Fv = f(i_Fv-1); 
+[x, i_Fp] = max(abs(P(2:N-1))); Fp = f(i_Fp-1);
+[x, i_Fz] = max(abs(Z(2:N-1))); Fz = f(i_Fz-1);
 
 %Cz = abs( Z(i_Fp)/(1i*Fp) )
 Cz = abs( (1/R-1/Z(i_Fp))/i_Fz )

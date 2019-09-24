@@ -1,9 +1,9 @@
 %% Extract parameters over time for two-element Windkessel model.
 
-load 20190117T145728_IQ_Sepsis-4min_traces;
-date = '17.01.2019'
-%load 20190123T105641_IQ_Sepsis-4min_traces;
-%date = '23.01.2019'
+%load 20190117T145728_IQ_Sepsis-4min_traces;
+%date = '17.01.2019'
+load 20190123T105641_IQ_Sepsis-4min_traces;
+date = '23.01.2019'
 
 name = append('Sepsis 4min_traces ', date)
 
@@ -16,6 +16,7 @@ R_arr = movmean(R_arr, 3); C_arr = movmean(C_arr, 3);
 figure();clf;title(append('Resistance (l) and compliance (r) ', date));
 yyaxis left
 plot(t_axis, R_arr)
+ylim([0, 1500])
 yyaxis right
 plot(t_axis, C_arr)
     
@@ -71,3 +72,6 @@ function [C, R] = get_parameters(t, p, v, fig1, fig2, fig3)
     axes(fig3); plot(t,q, 'b');title('Velocity remade by IFFT')
 end
 
+%% Reconstruct impedance with two-element Windkessel model
+
+Z = 

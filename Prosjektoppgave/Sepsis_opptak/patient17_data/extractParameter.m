@@ -72,3 +72,4 @@ function [C, R] = get_parameters(t, p, v, fig1, fig2, fig3)
     axes(fig3); plot(t,q, 'b');title('Velocity remade by IFFT')
 end
 
+
