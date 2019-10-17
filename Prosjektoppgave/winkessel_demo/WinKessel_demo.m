@@ -5,37 +5,54 @@
 
 % 2019.08.19 . Hans Torp
 
-load pressureMeasurement;% trykk p og tidsvektor t
-figure(1);clf;
+%load 20190117T145728_IQ_Sepsis-4min_traces;
+%date = '17.01.2019'
+load 20190123T105641_IQ_Sepsis-4min_traces;
+date = '23.01.2019'
+name = append('Sepsis 4min_traces ', date)
+figure();clf;sgtitle(name);
+
+% extract a single heart cycle
+delay = 0.07;
+tED = Tmean.tED-delay;
+cycleStart=33; % choose heart cycle (~300 possibilities)
+nCycles=1; % choose how many heart cycles to use
+tIdx = find( Ts.t>tED(cycleStart) & Ts.t<tED(cycleStart+nCycles)); % all samples within tED1 - tED2 window
+t=Ts.t(tIdx);
+v=Ts.velocity(tIdx);
+p=Ts.ART(tIdx);
+
 subplot(2,1,1);plot(t,p);grid;
 title("Pressure")
-%%
+
 N=length(t);
 dt=(t(end)-t(1))/(N-1);
 fs=1/dt;
 
-%f=(0:N-1)/N*fs;%frekvensakse
-f_shift=( (-N/2) : 1 : (N/2-1) )*(fs/N);
+f=(0:N-1)/N*fs;%frekvensakse
 P=fft(p);% fouriertransform av trykk p
-P_shift=fftshift(P);
+V=fft(v);% fouriertransform av trykk p
+Z=P./V;
 
-subplot(2,1,2);plot(f_shift,abs(P_shift));grid;%frekvensplot
-%subplot(2,1,2);plot(f,abs(P));grid;%frekvensplot
+subplot(2,1,2);plot(f,abs(P));grid;%frekvensplot
+xlim([0,10])
 title("Absolute pressure freq spectra")
 
 %%
 w=2*pi*f;%vinkelfrekvens
-R=1; C=0.001;
+R=1000; C=1.18e-4;
 Adm= 1/R - i*w*C;% admitans for paralellkobling av R og C
-Z=1 ./Adm;% impedans
+Z_WK=1./Adm;% impedans
 
 Q=Adm.*P;% flow i frekvensplan.  Fra Ohms lov P=Z*Q
 
 q=real(ifft(Q));% flow i tidsplan
 
-figure(2);clf;
-subplot(2,1,1);plot(t,p);grid;
+figure();clf;
+subplot(3,1,1);plot(t,p);grid;
 title("Pressure")
-subplot(2,1,2);plot(t,q);grid;
+subplot(3,1,2);plot(t,v);grid;
+title("Velocity")
+subplot(3,1,3);plot(t,q);grid;
 title("Velocity")
 

@@ -1,4 +1,5 @@
 %% Extract parameters over time for two-element Windkessel model.
+addpath('Master/Prosjektoppgave/Sepsis_opptak/patient17/data') 
 
 %load 20190117T145728_IQ_Sepsis-4min_traces;
 %date = '17.01.2019'
@@ -72,6 +73,4 @@ function [C, R] = get_parameters(t, p, v, fig1, fig2, fig3)
     axes(fig3); plot(t,q, 'b');title('Velocity remade by IFFT')
 end
 
-%% Reconstruct impedance with two-element Windkessel model
 
-Z = 
