@@ -1,11 +1,10 @@
 % import functions
 addpath('Master/Prosjektoppgave/helper_functions/') 
 % add data
-addpath('Master/Prosjektoppgave/dataset/patient18/') 
-%load 20190119T165520_IQ_Sepsis-4min_traces; name1 = '19.01.2019'; delay=0.20;
-%load 20190120T113031_IQ_Sepsis-4min_traces; name2 = '20.01.2019'; delay=0.20;
-%load 20190121T082718_IQ_Sepsis-4min_traces; name3 = '21.01.2019'; delay=0.20;
-load 20190123T120933_IQ_Sepsis-4min_traces; name4 = '23.01.2019'; delay=0.20;
+addpath('Master/Prosjektoppgave/dataset/patient28/') 
+%load 20190826T112026_IQ_Sepsis-4min_traces; name = '19.03.2019'; delay=0.20;
+load 20190827T085347_IQ_Sepsis-4min_traces; name = '20.03.2019'; delay=0.20;
+%load 20190829T102710_IQ_Sepsis-4min_traces; name = '23.03.2019'; delay=0.20; 
 
 %% Find appropriate limit for registering heart pulses from ecg
 
@@ -61,7 +60,7 @@ yyaxis left
 plot(Ts.t,Ts.velocity);ylabel('Velocity [cm/s]');xlabel('t [s]')
 yyaxis right
 plot(Ts.t,Ts.ART);ylabel('Pressure [mmHg]')
-xlim([59.4 61])
+%xlim([59.4 61])
 
 %% Test frequency
 tED = t_pulses-delay;
@@ -137,16 +136,16 @@ figure(18);
 tED = Tmean.tED-delay;
 tIdx = find( Ts.t>tED(50) & Ts.t<tED(50+1));
 t = Ts.t(tIdx); p = Ts.ART(tIdx); v = Ts.velocity(tIdx);
-P = fft(p))/length(p);
+P = abs(fft(p))/length(p);
 fs = 1/(t(2)-t(1)); f = (0:1/(length(t)-1):1)*fs;
 x = P(1);
 for i=2:10
-    x = x + 2*P(i)*exp(1j*2*pi*f(i).*(t+phase(x)));
+    x = x + 2*P(i)*exp(1j*2*pi*f(i).*(t+0.25));
 end
 plot(t,p,t,abs(x));%ylim([52, 70])
 ylabel('pressure [mmHg]');
 xlabel('Time [sec]')
-legend('Measured', 'Reconstructed')
+legend('Measured pressure', 'Reconstructed pressure')
 %%
 yyaxis right; plot(Ts.t(tIdx),Ts.velocity(tIdx));%ylim([0.04, 0.082])%axis([0, 246, 0.040, 0.085])
 ylabel('velocity [cm/s]');

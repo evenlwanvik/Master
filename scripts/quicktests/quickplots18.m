@@ -4,8 +4,8 @@ addpath('Master/Prosjektoppgave/helper_functions/')
 addpath('Master/Prosjektoppgave/dataset/patient18/') 
 %load 20190119T165520_IQ_Sepsis-4min_traces; name1 = '19.01.2019'; delay=0.20;
 %load 20190120T113031_IQ_Sepsis-4min_traces; name2 = '20.01.2019'; delay=0.20;
-%load 20190121T082718_IQ_Sepsis-4min_traces; name3 = '21.01.2019'; delay=0.20;
-load 20190123T120933_IQ_Sepsis-4min_traces; name4 = '23.01.2019'; delay=0.20;
+load 20190121T082718_IQ_Sepsis-4min_traces; name3 = '21.01.2019'; delay=0.20;
+%load 20190123T120933_IQ_Sepsis-4min_traces; name4 = '23.01.2019'; delay=0.20;
 
 %% Find appropriate limit for registering heart pulses from ecg
 
@@ -131,24 +131,31 @@ ylabel('Pressure [mmHg]');
 yyaxis right; plot(t_n11w,v_new);ylim([0.04, 0.082])%axis([0, 246, 0.040, 0.085])
 ylabel('Velocity [cm/s]');
 xlabel('Time [sec]');
-%% Get the complex envelope
+
+%% Reconstruct blood pressure from 10 first harmonics
 
 figure(18);     
 tED = Tmean.tED-delay;
 tIdx = find( Ts.t>tED(50) & Ts.t<tED(50+1));
 t = Ts.t(tIdx); p = Ts.ART(tIdx); v = Ts.velocity(tIdx);
 P = fft(p)/length(p);
-fs = 1/(t(2)-t(1)); f = (0:1/(length(t)-1):1)*fs;
+N = length(p); fs = 1/(t(2)-t(1)); f = (0:1/(N-1):1)*fs;
 A = abs(P);
 ang = angle(P);
-x = A(1);
-for i=2:10
-    x = x + 2*A(i)*exp(1j*2*pi*f(i).*(t+0.3));
+x5 = A(1);
+for i=2:3
+    x5 = x5 + 2*A(i)*cos(2*pi*f(i).*(t+0.45)+ang(i));
 end
-plot(t,p,t,abs(x));%ylim([52, 70])
+x10 = A(1);
+for i=2:8
+    x10 = x10 + 2*A(i)*cos(2*pi*f(i).*(t+0.45)+ang(i));
+end
+plot(t,p,t,abs(x5),t,abs(x10));%ylim([52, 70])
+
 ylabel('pressure [mmHg]');
 xlabel('Time [sec]')
-legend('Measured', 'Reconstructed', 'test')
+legend('Measured', '3 harmonics', '8 harmonics')
+
 %%
 tIdx = find( Ts4.t>tED(50) & Ts4.t<tED(50+1));
 plot(Ts4.t(tIdx),Ts4.ART(tIdx));%ylim([0.04, 0.082])%axis([0, 246, 0.040, 0.085])

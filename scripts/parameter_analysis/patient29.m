@@ -163,24 +163,24 @@ R6_dft_subset = abs(R_dft6(idx));
 R7_dft_subset = abs(R_dft7(idx));
 
 % find average
-R1_dft_subset_mean = mean(R1_dft_subset); 
-R2_dft_subset_mean = mean(R2_dft_subset); 
-R3_dft_subset_mean = mean(R3_dft_subset); 
-R4_dft_subset_mean = mean(R4_dft_subset);
-R5_dft_subset_mean = mean(R5_dft_subset);
-R6_dft_subset_mean = mean(R6_dft_subset);
-R7_dft_subset_mean = mean(R7_dft_subset);
+R1_dft_subset_mean_29 = mean(R1_dft_subset); 
+R2_dft_subset_mean_29 = mean(R2_dft_subset); 
+R3_dft_subset_mean_29 = mean(R3_dft_subset); 
+R4_dft_subset_mean_29 = mean(R4_dft_subset);
+R5_dft_subset_mean_29 = mean(R5_dft_subset);
+R6_dft_subset_mean_29 = mean(R6_dft_subset);
+R7_dft_subset_mean_29 = mean(R7_dft_subset);
 
-R1_dft_subset_var = mad(R1_dft_subset);
-R2_dft_subset_var = mad(R2_dft_subset);
-R3_dft_subset_var = mad(R3_dft_subset);
-R4_dft_subset_var = mad(R4_dft_subset);
-R5_dft_subset_var = mad(R5_dft_subset);
-R6_dft_subset_var = mad(R6_dft_subset);
-R7_dft_subset_var = mad(R7_dft_subset);
+R1_dft_subset_var_29 = mad(R1_dft_subset);
+R2_dft_subset_var_29 = mad(R2_dft_subset);
+R3_dft_subset_var_29 = mad(R3_dft_subset);
+R4_dft_subset_var_29 = mad(R4_dft_subset);
+R5_dft_subset_var_29 = mad(R5_dft_subset);
+R6_dft_subset_var_29 = mad(R6_dft_subset);
+R7_dft_subset_var_29 = mad(R7_dft_subset);
 
-R_mean = [R1_dft_subset_mean, R2_dft_subset_mean, R3_dft_subset_mean, R4_dft_subset_mean, R5_dft_subset_mean, R6_dft_subset_mean, R7_dft_subset_mean];
-R_var = [R1_dft_subset_var, R2_dft_subset_var, R3_dft_subset_var, R4_dft_subset_var, R5_dft_subset_var, R6_dft_subset_var, R7_dft_subset_var];
+R_mean = [R1_dft_subset_mean_29, R2_dft_subset_mean_29, R3_dft_subset_mean_29, R4_dft_subset_mean_29, R5_dft_subset_mean_29, R6_dft_subset_mean_29, R7_dft_subset_mean_29];
+R_var = [R1_dft_subset_var_29, R2_dft_subset_var_29, R3_dft_subset_var_29, R4_dft_subset_var_29, R5_dft_subset_var_29, R6_dft_subset_var_29, R7_dft_subset_var_29];
 
 plot(f_subset,R1_dft_subset, '-+', f_subset,R2_dft_subset, '-o' , f_subset,R3_dft_subset, '-*', f_subset,R4_dft_subset,'-s', f_subset,R5_dft_subset,'-d', f_subset,R6_dft_subset,'-^', f_subset,R7_dft_subset,'-v');
 legend(name1,name2,name3,name4,name5,name6,name7); xlabel('Frequency [Hz]'); ylabel('(1)');
@@ -203,24 +203,24 @@ C6_dft_subset = abs(C_dft6(idx));
 C7_dft_subset = abs(C_dft7(idx));
 
 % find average
-C1_dft_subset_mean = mean(C1_dft_subset); 
-C2_dft_subset_mean = mean(C2_dft_subset); 
-C3_dft_subset_mean = mean(C3_dft_subset); 
-C4_dft_subset_mean = mean(C4_dft_subset);
-C5_dft_subset_mean = mean(C5_dft_subset);
-C6_dft_subset_mean = mean(C6_dft_subset);
-C7_dft_subset_mean = mean(C7_dft_subset);
+C1_dft_subset_mean_29 = mean(C1_dft_subset); 
+C2_dft_subset_mean_29 = mean(C2_dft_subset); 
+C3_dft_subset_mean_29 = mean(C3_dft_subset); 
+C4_dft_subset_mean_29 = mean(C4_dft_subset);
+C5_dft_subset_mean_29 = mean(C5_dft_subset);
+C6_dft_subset_mean_29 = mean(C6_dft_subset);
+C7_dft_subset_mean_29 = mean(C7_dft_subset);
 
-C1_dft_subset_var = mad(C1_dft_subset);
-C2_dft_subset_var = mad(C2_dft_subset);
-C3_dft_subset_var = mad(C3_dft_subset);
-C4_dft_subset_var = mad(C4_dft_subset);
-C5_dft_subset_var = mad(C5_dft_subset);
-C6_dft_subset_var = mad(C6_dft_subset);
-C7_dft_subset_var = mad(C7_dft_subset);
+C1_dft_subset_var_29 = mad(C1_dft_subset);
+C2_dft_subset_var_29 = mad(C2_dft_subset);
+C3_dft_subset_var_29 = mad(C3_dft_subset);
+C4_dft_subset_var_29 = mad(C4_dft_subset);
+C5_dft_subset_var_29 = mad(C5_dft_subset);
+C6_dft_subset_var_29 = mad(C6_dft_subset);
+C7_dft_subset_var_29 = mad(C7_dft_subset);
 
-C_mean = [C1_dft_subset_mean, C2_dft_subset_mean, C3_dft_subset_mean, C4_dft_subset_mean, C5_dft_subset_mean, C6_dft_subset_mean, C7_dft_subset_mean];
-C_var = [C1_dft_subset_var, C2_dft_subset_var, C3_dft_subset_var, C4_dft_subset_var, C5_dft_subset_var, C6_dft_subset_var, C7_dft_subset_var];
+C_mean = [C1_dft_subset_mean_29, C2_dft_subset_mean_29, C3_dft_subset_mean_29, C4_dft_subset_mean_29, C5_dft_subset_mean_29, C6_dft_subset_mean_29, C7_dft_subset_mean_29];
+C_var = [C1_dft_subset_var_29, C2_dft_subset_var_29, C3_dft_subset_var_29, C4_dft_subset_var_29, C5_dft_subset_var_29, C6_dft_subset_var_29, C7_dft_subset_var_29];
 figure();
 plot(f_subset,C1_dft_subset, '-+', f_subset,C2_dft_subset, '-o' , f_subset,C3_dft_subset, '-*', f_subset,C4_dft_subset,'-s', f_subset,C5_dft_subset,'-d', f_subset,C6_dft_subset,'-^', f_subset,C7_dft_subset,'-v');
 legend(name1,name2,name3,name4,name5,name6,name7); xlabel('Frequency [Hz]'); ylabel('(1)');

@@ -1,14 +1,14 @@
 %% Patient 24
 
 addpath('Master/Prosjektoppgave/dataset/patient24/') 
-load 20190319T090217_IQ_Sepsis-4min_traces;
-name1 = '19.03.2019'; Ts1 = Ts; Tmean1 = Tmean; Tmin1 = Tmin; Tmax1 = Tmax; delay1=0.20;
-load 20190320T102140_IQ_Sepsis-4min_traces;
-name2 = '20.03.2019'; Ts2 = Ts; Tmean2 = Tmean; Tmin2 = Tmin; Tmax2 = Tmax; delay2=0.20;
-load 20190321T111423_IQ_Sepsis-4min_traces;
-name3 = '21.03.2019'; Ts3 = Ts; Tmean3 = Tmean; Tmin3 = Tmin; Tmax3 = Tmax; delay3=0.20;
-load 20190323T161332_IQ_Sepsis-4min_traces;
-name4 = '23.03.2019'; Ts4 = Ts; Tmean4 = Tmean; Tmin4 = Tmin; Tmax4 = Tmax; delay4=0.20; 
+load 20190119T165520_IQ_Sepsis-4min_traces;
+name1 = '19.01.2019'; Ts1 = Ts; Tmean1 = Tmean; Tmin1 = Tmin; Tmax1 = Tmax; delay1=0.20;
+load 20190120T113031_IQ_Sepsis-4min_traces;
+name2 = '20.01.2019'; Ts2 = Ts; Tmean2 = Tmean; Tmin2 = Tmin; Tmax2 = Tmax; delay2=0.20;
+load 20190121T082718_IQ_Sepsis-4min_traces;
+name3 = '21.01.2019'; Ts3 = Ts; Tmean3 = Tmean; Tmin3 = Tmin; Tmax3 = Tmax; delay3=0.20;
+load 20190123T120933_IQ_Sepsis-4min_traces;
+name4 = '23.01.2019'; Ts4 = Ts; Tmean4 = Tmean; Tmin4 = Tmin; Tmax4 = Tmax; delay4=0.20; 
 
 %% Else
 
@@ -99,18 +99,18 @@ R3_dft_subset = abs(R_dft3(idx));
 R4_dft_subset = abs(R_dft4(idx));
 
 % find average
-R1_dft_subset_mean = mean(R1_dft_subset); 
-R2_dft_subset_mean = mean(R2_dft_subset); 
-R3_dft_subset_mean = mean(R3_dft_subset); 
-R4_dft_subset_mean = mean(R4_dft_subset);
+R1_dft_subset_mean_24 = mean(R1_dft_subset); 
+R2_dft_subset_mean_24 = mean(R2_dft_subset); 
+R3_dft_subset_mean_24 = mean(R3_dft_subset); 
+R4_dft_subset_mean_24 = mean(R4_dft_subset);
 
-R1_dft_subset_var = mad(R1_dft_subset);
-R2_dft_subset_var = mad(R2_dft_subset);
-R3_dft_subset_var = mad(R3_dft_subset);
-R4_dft_subset_var = mad(R4_dft_subset);
+R1_dft_subset_var_24 = mad(R1_dft_subset);
+R2_dft_subset_var_24 = mad(R2_dft_subset);
+R3_dft_subset_var_24 = mad(R3_dft_subset);
+R4_dft_subset_var_24 = mad(R4_dft_subset);
 
-R_mean = [R1_dft_subset_mean, R2_dft_subset_mean, R3_dft_subset_mean, R4_dft_subset_mean];
-R_var = [R1_dft_subset_var, R2_dft_subset_var, R3_dft_subset_var, R4_dft_subset_var];
+R_mean = [R1_dft_subset_mean_24, R2_dft_subset_mean_24, R3_dft_subset_mean_24, R4_dft_subset_mean_24];
+R_var = [R1_dft_subset_var_24, R2_dft_subset_var_24, R3_dft_subset_var_24, R4_dft_subset_var_24];
 
 plot(f_subset,R1_dft_subset, '-+', f_subset,R2_dft_subset, '-o' , f_subset,R3_dft_subset, '-*', f_subset,R4_dft_subset);
 legend(name1,name2,name3,name4); xlabel('Frequency [Hz]'); ylabel('(1)');
@@ -130,18 +130,18 @@ C3_dft_subset = abs(C_dft3(idx));
 C4_dft_subset = abs(C_dft4(idx));
 
 % find average
-C1_dft_subset_mean = mean(C1_dft_subset); 
-C2_dft_subset_mean = mean(C2_dft_subset); 
-C3_dft_subset_mean = mean(C3_dft_subset); 
-C4_dft_subset_mean = mean(C4_dft_subset);
+C1_dft_subset_mean_24 = mean(C1_dft_subset); 
+C2_dft_subset_mean_24 = mean(C2_dft_subset); 
+C3_dft_subset_mean_24 = mean(C3_dft_subset); 
+C4_dft_subset_mean_24 = mean(C4_dft_subset);
 
-C1_dft_subset_var = mad(C1_dft_subset);
-C2_dft_subset_var = mad(C2_dft_subset);
-C3_dft_subset_var = mad(C3_dft_subset);
-C4_dft_subset_var = mad(C4_dft_subset);
+C1_dft_subset_var_24 = mad(C1_dft_subset);
+C2_dft_subset_var_24 = mad(C2_dft_subset);
+C3_dft_subset_var_24 = mad(C3_dft_subset);
+C4_dft_subset_var_24 = mad(C4_dft_subset);
 
-C_mean = [C1_dft_subset_mean, C2_dft_subset_mean, C3_dft_subset_mean, C4_dft_subset_mean];
-C_var = [C1_dft_subset_var, C2_dft_subset_var, C3_dft_subset_var, C4_dft_subset_var];
+C_mean = [C1_dft_subset_mean_24, C2_dft_subset_mean_24, C3_dft_subset_mean_24, C4_dft_subset_mean_24];
+C_var = [C1_dft_subset_var_24, C2_dft_subset_var_24, C3_dft_subset_var_24, C4_dft_subset_var_24];
 figure();
 plot(f_subset,C1_dft_subset, '-+', f_subset,C2_dft_subset, '-o' , f_subset,C3_dft_subset, '-*', f_subset,C4_dft_subset,'-s');
 legend(name1,name2,name3,name4,name5,name6,name7); xlabel('Frequency [Hz]'); ylabel('(1)');

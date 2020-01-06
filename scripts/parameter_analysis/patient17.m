@@ -1,15 +1,14 @@
 %% Patient18
 
-addpath('Master/Prosjektoppgave/dataset/patient18/') 
-load 20190119T165520_IQ_Sepsis-4min_traces;
-name1 = '19.01.2019'; Ts1 = Ts; Tmean1 = Tmean; Tmin1 = Tmin; Tmax1 = Tmax; delay1=0.20;
-load 20190120T113031_IQ_Sepsis-4min_traces;
-name2 = '20.01.2019'; Ts2 = Ts; Tmean2 = Tmean; Tmin2 = Tmin; Tmax2 = Tmax; delay2=0.20;
-load 20190121T082718_IQ_Sepsis-4min_traces;
-name3 = '21.01.2019'; Ts3 = Ts; Tmean3 = Tmean; Tmin3 = Tmin; Tmax3 = Tmax; delay3=0.20;
-load 20190123T120933_IQ_Sepsis-4min_traces;
-name4 = '23.01.2019'; Ts4 = Ts; Tmean4 = Tmean; Tmin4 = Tmin; Tmax4 = Tmax; delay4=0.20; 
-
+addpath('Master/Prosjektoppgave/dataset/patient17/') 
+load 20190117T145728_IQ_Sepsis-4min_traces;
+name1 = '19.01.2019'; Ts1 = Ts; Tmean1 = Tmean; Tmin1 = Tmin; Tmax1 = Tmax; delay1 = -0.18; 
+load 20190118T110902_IQ_Sepsis-4min_traces;
+name2 = '20.01.2019'; Ts2 = Ts; Tmean2 = Tmean; Tmin2 = Tmin; Tmax2 = Tmax; delay2 = -0.18;
+load 20190120T111256_IQ_Sepsis-4min_traces;
+name3 = '21.01.2019'; Ts3 = Ts; Tmean3 = Tmean; Tmin3 = Tmin; Tmax3 = Tmax; delay3 = 0.07; 
+load 20190123T105641_IQ_Sepsis-4min_traces;
+name4 = '23.01.2019'; Ts4 = Ts; Tmean4 = Tmean; Tmin4 = Tmin; Tmax4 = Tmax; delay4 = -0.15; 
 %% Register heart pulses on our own?
 import register_heart_pulses.*
 
@@ -60,40 +59,38 @@ N4=length(T4_intp);Tsamp=T4_intp(2)-T4_intp(1);fs=1/Tsamp;f4=(0:1/(N4-1):1)*fs;
 %% Plot resistance
 
 % Remove discontinuity between start/end
-%R1_intp = R1_intp - linspace(R1_intp(1), R1_intp(end), length(R1_intp)) + mean([R1_intp(1), R1_intp(end)]);
-%R2_intp = R2_intp - linspace(R2_intp(1), R2_intp(end), length(R2_intp)) + mean([R2_intp(1), R2_intp(end)]);
-%R3_intp = R3_intp - linspace(R3_intp(1), R3_intp(end), length(R3_intp)) + mean([R3_intp(1), R3_intp(end)]);
-%R4_intp = R4_intp - linspace(R4_intp(1), R4_intp(end), length(R4_intp)) + mean([R4_intp(1), R4_intp(end)]);
+R1_intp = R1_intp - linspace(R1_intp(1), R1_intp(end), length(R1_intp)) + mean([R1_intp(1), R1_intp(end)]);
+R2_intp = R2_intp - linspace(R2_intp(1), R2_intp(end), length(R2_intp)) + mean([R2_intp(1), R2_intp(end)]);
+R3_intp = R3_intp - linspace(R3_intp(1), R3_intp(end), length(R3_intp)) + mean([R3_intp(1), R3_intp(end)]);
+R4_intp = R4_intp - linspace(R4_intp(1), R4_intp(end), length(R4_intp)) + mean([R4_intp(1), R4_intp(end)]);
 
-%figure(10);clf;sgtitle('Patient 18 - Resistance');
-subplot(4,1,1);plot(T1_intp,R1_intp);ylim([3000,6000]);grid();title(name1); set(gca,'XTickLabel',[]); %ylabel('SVR')
-subplot(4,1,2);plot(T2_intp,R2_intp);ylim([1500,3500]);grid();title(name2); set(gca,'XTickLabel',[]);
-subplot(4,1,3);plot(T3_intp,R3_intp);ylim([1000,3000]);grid();title(name3); set(gca,'XTickLabel',[]);
-subplot(4,1,4);plot(T4_intp,R4_intp);ylim([900,1400]);grid();title(name4); xlabel('Time [s]')
-
-%% Test relativity measure for Resistance
-figure(70);clf;%sgtitle('Patient 18 - Resistance');
-subplot(4,1,1);plot(T1_intp,R1_intp/mean(R1_intp));ylim([0.5,1.5]);grid();title(name1)
-subplot(4,1,2);plot(T2_intp,R2_intp/mean(R2_intp));ylim([0.5,1.5]);grid();title(name2)
-subplot(4,1,3);plot(T3_intp,R3_intp/mean(R3_intp));ylim([0.5,1.5]);grid();title(name3)
-subplot(4,1,4);plot(T4_intp,R4_intp/mean(R4_intp));ylim([0.5,1.5]);grid();title(name4)
+figure(10);clf;sgtitle('Patient 17 - Resistance');
+subplot(4,1,1);plot(T1_intp,R1_intp);ylim([2000,7000]);grid();title(name1); set(gca,'XTickLabel',[]);
+subplot(4,1,2);plot(T2_intp,R2_intp);ylim([2000,3200]);grid();title(name2); set(gca,'XTickLabel',[]);
+subplot(4,1,3);plot(T3_intp,R3_intp);ylim([-20000,100000]);grid();title(name3); set(gca,'XTickLabel',[]);
+subplot(4,1,4);plot(T4_intp,R4_intp);ylim([700,1200]);grid();title(name4); xlabel('Time [sec]')
 
 %% Test DFT of resistance
 
 % Remove (decrease) the DC component to reduce spectral bleeding from its
 % ripples by subtracting the avg resistance and Normalize it and divide it 
 % by DC component to get a similar relative scale for all of the spectra
-
 R_dft1 = fft(R1_intp-mean(R1_intp))/N1;
 R_dft2 = fft(R2_intp-mean(R2_intp))/N2;
 R_dft3 = fft(R3_intp-mean(R3_intp))/N3; 
 R_dft4 = fft(R4_intp-mean(R4_intp))/N4;
 
-figure(11);clf;sgtitle('Patient 18 - Resistance');
-subplot(4,2,1);plot(f1,abs(R_dft1));title(name1);xlim([0 0.1]);ylim([0 100]);grid();
-subplot(4,2,3);plot(f2,abs(R_dft2));title(name2);xlim([0 0.1]);ylim([0 100]);grid();
-subplot(4,2,5);plot(f3,abs(R_dft3));title(name3);xlim([0 0.1]);ylim([0 100]);grid();
-subplot(4,2,7);plot(f4,abs(R_dft4));title(name4);xlim([0 0.1]);ylim([0 100]);grid();
+% Save data for workspace
+R_dft1_patient17 = R_dft1;
+R_dft2_patient17 = R_dft2;
+R_dft3_patient17 = R_dft3;
+R_dft4_patient17 = R_dft4;
+
+figure(11);clf;sgtitle('Patient 17 - Resistance DFT');
+subplot(4,2,1);plot(f1,abs(R_dft1));title(name1);xlim([0 0.1]);ylim([0 200]);grid();
+subplot(4,2,3);plot(f2,abs(R_dft2));title(name2);xlim([0 0.1]);ylim([0 200]);grid();
+subplot(4,2,5);plot(f3,abs(R_dft3));title(name3);xlim([0 0.1]);ylim([0 20000]);grid();
+subplot(4,2,7);plot(f4,abs(R_dft4));title(name4);xlim([0 0.1]);ylim([0 200]);grid();
 
 % Convert it to a comparable scale by converting values relative to their
 % original DC conponent
@@ -103,28 +100,15 @@ R_dft3 = R_dft3/mean(R3_intp);
 R_dft4 = R_dft4/mean(R4_intp);
 
 % Save data for workspace
-R_dft1_patient18 = R_dft1;
-R_dft2_patient18 = R_dft2;
-R_dft3_patient18 = R_dft3;
-R_dft4_patient18 = R_dft4;
+R_dft1_patient17 = R_dft1;
+R_dft2_patient17 = R_dft2;
+R_dft3_patient17 = R_dft3;
+R_dft4_patient17 = R_dft4;
 
 subplot(4,2,2);plot(f1,abs(R_dft1));title(name1);xlim([0 0.1]);ylim([0 3e-2]);grid();
 subplot(4,2,4);plot(f2,abs(R_dft2));title(name2);xlim([0 0.1]);ylim([0 3e-2]);grid();
 subplot(4,2,6);plot(f3,abs(R_dft3));title(name3);xlim([0 0.1]);ylim([0 3e-2]);grid();
 subplot(4,2,8);plot(f4,abs(R_dft4));title(name4);xlim([0 0.1]);ylim([0 3e-2]);grid();
-
-figure(34);clf;sgtitle('Patient 18 - Phase');
-subplot(4,1,1);plot(f1,angle(R_dft1));title(name1);xlim([0 0.1]);%ylim([0 2.5e-5]);grid();
-subplot(4,1,2);plot(f2,angle(R_dft2));title(name2);xlim([0 0.1]);%ylim([0 2.5e-5]);grid();
-subplot(4,1,3);plot(f3,angle(R_dft3));title(name3);xlim([0 0.1]);%ylim([0 2.5e-5]);grid();
-subplot(4,1,4);plot(f4,angle(R_dft4));title(name4);xlim([0 0.1]);%ylim([0 2.5e-5]);grid();
-
-
-%% Analyze resistance phase
-
-
-
-
 
 %% Crosscorrelate my method with actual measured data. We will recreate the 
 % signal by using the lower frequency components to see if they match up
@@ -142,24 +126,16 @@ subplot(4,1,4);plot(f4,angle(R_dft4));title(name4);xlim([0 0.1]);%ylim([0 2.5e-5
 %% Plot Capacitance
 
 % Remove discontinuity between start/end
-%C1_intp = C1_intp - linspace(C1_intp(1), C1_intp(end), length(C1_intp)) + mean([C1_intp(1), C1_intp(end)]);
-%C2_intp = C2_intp - linspace(C2_intp(1), C2_intp(end), length(C2_intp)) + mean([C2_intp(1), C2_intp(end)]);
-%C3_intp = C3_intp - linspace(C3_intp(1), C3_intp(end), length(C3_intp)) + mean([C3_intp(1), C3_intp(end)]);
-%C4_intp = C4_intp - linspace(C4_intp(1), C4_intp(end), length(C4_intp)) + mean([C4_intp(1), C4_intp(end)]);
+C1_intp = C1_intp - linspace(C1_intp(1), C1_intp(end), length(C1_intp)) + mean([C1_intp(1), C1_intp(end)]);
+C2_intp = C2_intp - linspace(C2_intp(1), C2_intp(end), length(C2_intp)) + mean([C2_intp(1), C2_intp(end)]);
+C3_intp = C3_intp - linspace(C3_intp(1), C3_intp(end), length(C3_intp)) + mean([C3_intp(1), C3_intp(end)]);
+C4_intp = C4_intp - linspace(C4_intp(1), C4_intp(end), length(C4_intp)) + mean([C4_intp(1), C4_intp(end)]);
 
-figure(12);clf;%sgtitle('Patient 18 - Compliance');
-subplot(4,1,1);plot(T1_intp,C1_intp);ylim([3e-4,8e-4]);grid();title(name1)
-subplot(4,1,2);plot(T2_intp,C2_intp);ylim([4e-4,8e-4]);grid();title(name2)
-subplot(4,1,3);plot(T3_intp,C3_intp);ylim([5e-4,8e-4]);grid();title(name3)
-subplot(4,1,4);plot(T4_intp,C4_intp);ylim([4.5e-4,7.5e-4]);grid();title(name4)
-xlabel('Time [s]')
-
-%% Test relativity measure for compliance
-figure(71);clf;%sgtitle('Patient 18 - Compliance');
-subplot(4,1,1);plot(T1_intp,C1_intp/mean(C1_intp));ylim([0.8,1.5]);grid();title(name1)
-subplot(4,1,2);plot(T2_intp,C2_intp/mean(C2_intp));ylim([0.8,1.5]);grid();title(name2)
-subplot(4,1,3);plot(T3_intp,C3_intp/mean(C3_intp));ylim([0.8,1.5]);grid();title(name3)
-subplot(4,1,4);plot(T4_intp,C4_intp/mean(C4_intp));ylim([0.8,1.5]);grid();title(name4)
+figure(12);clf;sgtitle('Patient 17 - Compliance');
+subplot(4,1,1);plot(T1_intp,C1_intp);ylim([1.5e-4,2.5e-4]);grid();title(name1)
+subplot(4,1,2);plot(T2_intp,C2_intp);ylim([2.8e-4,3.3e-4]);grid();title(name2)
+subplot(4,1,3);plot(T3_intp,C3_intp);ylim([1e-4,3.3e-4]);grid();title(name3)
+subplot(4,1,4);plot(T4_intp,C4_intp);ylim([1.8e-4,2.3e-4]);grid();title(name4)
 
 %% Get DFT of Capacitance
 
@@ -171,11 +147,12 @@ C_dft2 = fft(C2_intp-mean(C2_intp))/N2;
 C_dft3 = fft(C3_intp-mean(C3_intp))/N3; 
 C_dft4 = fft(C4_intp-mean(C4_intp))/N4; 
 
-figure(14);clf;sgtitle('Patient 18 - Compliance');
-subplot(4,2,1);plot(f1,abs(C_dft1));title(name1);xlim([0 0.1]);ylim([0 2.5e-5]);grid();
-subplot(4,2,3);plot(f2,abs(C_dft2));title(name2);xlim([0 0.1]);ylim([0 2.5e-5]);grid();
-subplot(4,2,5);plot(f3,abs(C_dft3));title(name3);xlim([0 0.1]);ylim([0 2.5e-5]);grid();
-subplot(4,2,7);plot(f4,abs(C_dft4));title(name4);xlim([0 0.1]);ylim([0 2.5e-5]);grid();
+
+figure(14);clf;sgtitle('Patient 18 - Compliance DFT');
+subplot(4,2,1);plot(f1,abs(C_dft1));title(name1);xlim([0 0.1]);ylim([0 1.5e-5]);grid();
+subplot(4,2,3);plot(f2,abs(C_dft2));title(name2);xlim([0 0.1]);ylim([0 1.5e-5]);grid();
+subplot(4,2,5);plot(f3,abs(C_dft3));title(name3);xlim([0 0.1]);ylim([0 1.5e-5]);grid();
+subplot(4,2,7);plot(f4,abs(C_dft4));title(name4);xlim([0 0.1]);ylim([0 1.5e-5]);grid();
 
 % Convert it to a comparable scale by converting values relative to their
 % original DC conponent
@@ -185,10 +162,10 @@ C_dft3 = C_dft3/mean(C3_intp);
 C_dft4 = C_dft4/mean(C4_intp);
 
 % Save data for workspace
-C_dft1_patient18 = C_dft1;
-C_dft2_patient18 = C_dft2;
-C_dft3_patient18 = C_dft3;
-C_dft4_patient18 = C_dft4;
+C_dft1_patient17 = C_dft1;
+C_dft2_patient17 = C_dft2;
+C_dft3_patient17 = C_dft3;
+C_dft4_patient17 = C_dft4;
 
 subplot(4,2,2);plot(f1,abs(C_dft1));title(name1);xlim([0 0.1]);ylim([0 3e-2]);grid();
 subplot(4,2,4);plot(f2,abs(C_dft2));title(name2);xlim([0 0.1]);ylim([0 3e-2]);grid();

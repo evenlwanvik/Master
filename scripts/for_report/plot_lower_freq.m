@@ -6,17 +6,19 @@ startIdx = 3;
 endIdx = round(0.04/(fs/N1))+1;
 idx = startIdx:endIdx;
 f_subset = f1(idx);
-figure(20);clf;sgtitle('Patient 18');
+figure(20);clf;sgtitle('Patient 17');
+
+
 
 %%
-R_dft1 = R_dft1_patient18;
-R_dft2 = R_dft2_patient18;
-R_dft3 = R_dft3_patient18;
-R_dft4 = R_dft4_patient18;
-C_dft1 = C_dft1_patient18;
-C_dft2 = C_dft2_patient18;
-C_dft3 = C_dft3_patient18;
-C_dft4 = C_dft4_patient18;
+R_dft1 = R_dft1_patient17;
+R_dft2 = R_dft2_patient17;
+R_dft3 = R_dft3_patient17;
+R_dft4 = R_dft4_patient17;
+C_dft1 = C_dft1_patient17;
+C_dft2 = C_dft2_patient17;
+C_dft3 = C_dft3_patient17;
+C_dft4 = C_dft4_patient17;
 
 %% RESISTANCE
 figure();
@@ -27,15 +29,15 @@ R3_dft_subset = abs(R_dft3(idx));
 R4_dft_subset = abs(R_dft4(idx));
 
 % find average
-R1_dft_subset_mean = mean(R1_dft_subset); 
-R2_dft_subset_mean = mean(R2_dft_subset); 
-R3_dft_subset_mean = mean(R3_dft_subset); 
-R4_dft_subset_mean = mean(R4_dft_subset);
+R1_dft_subset_mean_17 = mean(R1_dft_subset); 
+R2_dft_subset_mean_17 = mean(R2_dft_subset); 
+R3_dft_subset_mean_17 = mean(R3_dft_subset); 
+R4_dft_subset_mean_17 = mean(R4_dft_subset);
 
-R1_dft_subset_var = mad(R1_dft_subset);
-R2_dft_subset_var = mad(R2_dft_subset);
-R3_dft_subset_var = mad(R3_dft_subset);
-R4_dft_subset_var = mad(R4_dft_subset);
+R1_dft_subset_var_17 = mad(R1_dft_subset);
+R2_dft_subset_var_17 = mad(R2_dft_subset);
+R3_dft_subset_var_17 = mad(R3_dft_subset);
+R4_dft_subset_var_17 = mad(R4_dft_subset);
 
 R_mean = [R1_dft_subset_mean, R2_dft_subset_mean, R3_dft_subset_mean, R4_dft_subset_mean];
 R_var = [R1_dft_subset_var, R2_dft_subset_var, R3_dft_subset_var, R4_dft_subset_var];

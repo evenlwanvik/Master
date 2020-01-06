@@ -98,16 +98,16 @@ R2_dft_subset = abs(R_dft2(idx));
 R3_dft_subset = abs(R_dft3(idx));
 
 % find average
-R1_dft_subset_mean = mean(R1_dft_subset); 
-R2_dft_subset_mean = mean(R2_dft_subset); 
-R3_dft_subset_mean = mean(R3_dft_subset); 
+R1_dft_subset_mean_30 = mean(R1_dft_subset); 
+R2_dft_subset_mean_30 = mean(R2_dft_subset); 
+R3_dft_subset_mean_30 = mean(R3_dft_subset); 
 
-R1_dft_subset_var = mad(R1_dft_subset);
-R2_dft_subset_var = mad(R2_dft_subset);
-R3_dft_subset_var = mad(R3_dft_subset);
+R1_dft_subset_var_30 = mad(R1_dft_subset);
+R2_dft_subset_var_30 = mad(R2_dft_subset);
+R3_dft_subset_var_30 = mad(R3_dft_subset);
 
-R_mean = [R1_dft_subset_mean, R2_dft_subset_mean, R3_dft_subset_mean];
-R_var = [R1_dft_subset_var, R2_dft_subset_var, R3_dft_subset_var];
+R_mean = [R1_dft_subset_mean_30, R2_dft_subset_mean_30, R3_dft_subset_mean_30];
+R_var = [R1_dft_subset_var_30, R2_dft_subset_var_30, R3_dft_subset_var_30];
 
 plot(f_subset,R1_dft_subset, '-+', f_subset,R2_dft_subset, '-o' , f_subset,R3_dft_subset, '-*');
 legend(name1,name3,name4); xlabel('Frequency [Hz]'); ylabel('(1)');
@@ -125,16 +125,16 @@ C2_dft_subset = abs(C_dft2(idx));
 C3_dft_subset = abs(C_dft3(idx));
 
 % find average
-C1_dft_subset_mean = mean(C1_dft_subset); 
-C2_dft_subset_mean = mean(C2_dft_subset); 
-C3_dft_subset_mean = mean(C3_dft_subset); 
+C1_dft_subset_mean_30 = mean(C1_dft_subset); 
+C2_dft_subset_mean_30 = mean(C2_dft_subset); 
+C3_dft_subset_mean_30 = mean(C3_dft_subset); 
 
-C1_dft_subset_var = mad(C1_dft_subset);
-C2_dft_subset_var = mad(C2_dft_subset);
-C3_dft_subset_var = mad(C3_dft_subset);
+C1_dft_subset_var_30 = mad(C1_dft_subset);
+C2_dft_subset_var_30 = mad(C2_dft_subset);
+C3_dft_subset_var_30 = mad(C3_dft_subset);
 
-C_mean = [C1_dft_subset_mean, C2_dft_subset_mean, C3_dft_subset_mean];
-C_var = [C1_dft_subset_var, C2_dft_subset_var, C3_dft_subset_var];
+C_mean = [C1_dft_subset_mean_30, C2_dft_subset_mean_30, C3_dft_subset_mean_30];
+C_var = [C1_dft_subset_var_30, C2_dft_subset_var_30, C3_dft_subset_var_30];
 figure();
 plot(f_subset,C1_dft_subset, '-+', f_subset,C2_dft_subset, '-o' , f_subset,C3_dft_subset, '-*');
 legend(name1,name2,name3); xlabel('Frequency [Hz]'); ylabel('(1)');

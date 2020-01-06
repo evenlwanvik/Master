@@ -1,14 +1,16 @@
-%% Patient18
+%% Patient15
 
-addpath('Master/Prosjektoppgave/dataset/patient17/') 
-load 20190117T145728_IQ_Sepsis-4min_traces;
-name1 = '19.01.2019'; Ts1 = Ts; Tmean1 = Tmean; Tmin1 = Tmin; Tmax1 = Tmax; delay1 = -0.18; 
-load 20190118T110902_IQ_Sepsis-4min_traces;
-name2 = '20.01.2019'; Ts2 = Ts; Tmean2 = Tmean; Tmin2 = Tmin; Tmax2 = Tmax; delay2 = -0.18;
-load 20190120T111256_IQ_Sepsis-4min_traces;
-name3 = '21.01.2019'; Ts3 = Ts; Tmean3 = Tmean; Tmin3 = Tmin; Tmax3 = Tmax; delay3 = 0.07; 
-load 20190123T105641_IQ_Sepsis-4min_traces;
-name4 = '23.01.2019'; Ts4 = Ts; Tmean4 = Tmean; Tmin4 = Tmin; Tmax4 = Tmax; delay4 = -0.15; 
+addpath('Master/Prosjektoppgave/dataset/patient15/') 
+load 20181211T103052_IQ_Sepsis-4min_traces;
+name1 = '11.12.2018'; Ts1 = Ts; Tmean1 = Tmean; Tmin1 = Tmin; Tmax1 = Tmax; delay=-0.15; 
+load 20181212T094252_IQ_Sepsis-4min_traces;
+name2 = '12.12.2018'; Ts2 = Ts; Tmean2 = Tmean; Tmin2 = Tmin; Tmax2 = Tmax; delay=-0.15;  
+load 20181218T100827_IQ_Sepsis_traces;
+name3 = '18.12.2018'; Ts3 = Ts; Tmean3 = Tmean; Tmin3 = Tmin; Tmax3 = Tmax; delay=-0.15;  
+load 20181219T145901_IQ_Sepsis_traces;
+name4 = '19.12.2019'; Ts4 = Ts; Tmean4 = Tmean; Tmin4 = Tmin; Tmax4 = Tmax; delay=-0.15;  
+
+
 %% Register heart pulses on our own?
 import register_heart_pulses.*
 
@@ -19,10 +21,10 @@ import register_heart_pulses.*
 
 %% Else
 
-t_pulses1 = Tmean1.tED;
-t_pulses2 = Tmean2.tED;
-t_pulses3 = Tmean3.tED;
-t_pulses4 = Tmean4.tED;
+t_pulses1 = Tmean1.t;
+t_pulses2 = Tmean2.t;
+t_pulses3 = Tmean3.t;
+t_pulses4 = Tmean4.t;
 
 %% Get compliance and resistance for all dates using fit
 
@@ -99,6 +101,12 @@ R_dft2 = R_dft2/mean(R2_intp);
 R_dft3 = R_dft3/mean(R3_intp);
 R_dft4 = R_dft4/mean(R4_intp);
 
+% Save data for workspace
+R_dft1_patient15 = R_dft1;
+R_dft2_patient15 = R_dft2;
+R_dft3_patient15 = R_dft3;
+R_dft4_patient15 = R_dft4;
+
 subplot(4,2,2);plot(f1,abs(R_dft1));title(name1);xlim([0 0.1]);ylim([0 3e-2]);grid();
 subplot(4,2,4);plot(f2,abs(R_dft2));title(name2);xlim([0 0.1]);ylim([0 3e-2]);grid();
 subplot(4,2,6);plot(f3,abs(R_dft3));title(name3);xlim([0 0.1]);ylim([0 3e-2]);grid();
@@ -141,11 +149,6 @@ C_dft2 = fft(C2_intp-mean(C2_intp))/N2;
 C_dft3 = fft(C3_intp-mean(C3_intp))/N3; 
 C_dft4 = fft(C4_intp-mean(C4_intp))/N4; 
 
-% Save data for workspace
-C_dft1_patient17 = C_dft1;
-C_dft2_patient17 = C_dft2;
-C_dft3_patient17 = C_dft3;
-C_dft4_patient17 = C_dft4;
 
 figure(14);clf;sgtitle('Patient 18 - Compliance DFT');
 subplot(4,2,1);plot(f1,abs(C_dft1));title(name1);xlim([0 0.1]);ylim([0 1.5e-5]);grid();
@@ -159,6 +162,12 @@ C_dft1 = C_dft1/mean(C1_intp);
 C_dft2 = C_dft2/mean(C2_intp);
 C_dft3 = C_dft3/mean(C3_intp);
 C_dft4 = C_dft4/mean(C4_intp);
+
+% Save data for workspace
+C_dft1_patient15 = C_dft1;
+C_dft2_patient15 = C_dft2;
+C_dft3_patient15 = C_dft3;
+C_dft4_patient15 = C_dft4;
 
 subplot(4,2,2);plot(f1,abs(C_dft1));title(name1);xlim([0 0.1]);ylim([0 3e-2]);grid();
 subplot(4,2,4);plot(f2,abs(C_dft2));title(name2);xlim([0 0.1]);ylim([0 3e-2]);grid();
