@@ -1,3 +1,5 @@
+# Course content
+
 In this project, we, the students, were tasked with specializing in a selected area of research based on scientific method, e.g., collecting supplementary information based on literature search and practical and other sources and combining it with own knowledge into a project report. Furthermore, we had to complete a comprehensive independent project, including drawing up a project plan with milestones, reporting partial results and progress, and writing a standard project report. The project was a part of the 5th year Cybernetics and Robotics curriculum.
 
 # Abstract
